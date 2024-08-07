@@ -1,0 +1,142 @@
+.navigationBar {
+  padding: 10px 20px;
+  min-width: 15vw;
+  max-width: max-content;
+  height: 100vh;
+  color: var(--primary);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > div {
+    margin-top: 15px;
+  }
+}
+
+.stats {
+  display: flex;
+  font-family: var(--font-family), sans-serif;
+  font-weight: bold;
+  color: var(--gray-1);
+  gap: 10px;
+  justify-content: space-evenly;
+  width: 100%;
+
+  div {
+    gap: 2px;
+
+    span {
+      color: var(--gray-1);
+      font-family: var(--font-family), sans-serif;
+      font-size: 12px;
+    }
+  }
+
+
+}
+
+.accountType {
+  padding: 5px 15px;
+  border-radius: 4px;
+  color: var(--gray-2);
+  font-family: var(--font-family), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.accountFree {
+  background-color: var(--primary);
+}
+
+.accountPremium {
+  background-color: #004AEA;
+}
+
+.headerInfos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h3 {
+    font-weight: bold;
+    font-family: var(--font-family), sans-serif;
+    font-size: 2rem;
+  }
+
+  img {
+    height: 125px;
+  }
+}
+
+.navigation {
+  margin-top: 5rem;
+  display: flex;
+  padding: 0 20px;
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    li {
+
+
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      a {
+        display: flex;
+        gap: 10px;
+        font-family: var(--font-family), sans-serif;
+        font-weight: bold;
+
+        font-size: 1.3rem;
+
+
+      }
+
+
+    }
+  }
+}
+
+.navActive {
+  color: var(--blue-1);
+
+  i, a {
+    color: var(--blue-1);
+  }
+
+}
+
+.logout {
+  height: 50px;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    font-size: 1.3rem;
+    font-family: var(--font-family), sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    i {
+      color: red;
+    }
+  }
+
+}

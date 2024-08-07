@@ -1,0 +1,59 @@
+@use "../../../../../assets/styles/mixins" as mixins;
+
+.input {
+  background-color: white;
+  font-family: var(--font-family), serif;
+  outline: none;
+  box-shadow: var(--box-shadow);
+}
+
+.registerMd {
+  display: none;
+
+  @include mixins.md-lt {
+    display: flex;
+  }
+}
+
+form {
+  width: 40%;
+
+  @include mixins.md-lt {
+    width: 80%;
+  }
+
+  @include mixins.lg {
+    width: 60%;
+  }
+}
+
+.inputPasswordContainer {
+  position: relative;
+
+  i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
+
+.requestPassword {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-family: var(--font-family), serif;
+  font-weight: bold;
+}
+
+.btnLogin {
+
+  &:hover {
+    background: linear-gradient(50deg, #dc99f9, #85aeff, #2bb8f0);
+    color: white;
+  }
+}

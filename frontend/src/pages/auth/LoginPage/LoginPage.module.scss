@@ -1,0 +1,42 @@
+@use "../../../assets/styles/mixins" as mixins;
+
+.background {
+  width: 50vw;
+  height: 100vh;
+  background: -webkit-linear-gradient(50deg, #dc99f9, #85aeff, #2bb8f0);
+  background: linear-gradient(50deg, #dc99f9, #85aeff, #2bb8f0);
+
+  @include mixins.md-lt {
+    display: none;
+  }
+
+  h2 {
+    color: var(--gray-2);
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
+
+  p {
+    color: var(--gray-2);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  button {
+    padding: 10px 25px;
+    width: 20%;
+
+    @include  mixins.lg {
+      width: 60%;
+    }
+  }
+}
+
+.login {
+  @include mixins.md-lt {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+}
