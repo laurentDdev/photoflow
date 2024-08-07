@@ -45,7 +45,8 @@ const LoginForm = ({handleRegister}: Props) => {
             await login(values)
         }catch (e) {
             console.log(e)
-            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             setError("generic", {
                 type: "generic",
                 message: "Erreur lors de la connexion"

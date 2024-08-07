@@ -1,11 +1,6 @@
 @use "../../../../../assets/styles/mixins" as mixins;
 
-.input {
-  background-color: white;
-  font-family: var(--font-family), serif;
-  outline: none;
-  box-shadow: var(--box-shadow);
-}
+
 
 .registerMd {
   display: none;
@@ -48,6 +43,13 @@ form {
 .label {
   font-family: var(--font-family), serif;
   font-weight: bold;
+}
+
+.input {
+  background-color: white;
+  font-family: var(--font-family), serif;
+  outline: none;
+  box-shadow: var(--box-shadow);
 }
 
 .btnLogin {

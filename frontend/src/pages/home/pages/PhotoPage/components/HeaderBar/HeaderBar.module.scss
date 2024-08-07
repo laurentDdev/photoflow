@@ -1,0 +1,43 @@
+
+.headerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputFilter {
+  position: relative;
+  width: 25%;
+
+  input {
+    background-color: white;
+    font-family: var(--font-family), serif;
+    outline: none;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 10px 30px;
+  }
+
+  i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.headerAction {
+  display: flex;
+  gap: 10px;
+
+  i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+
+    &:hover {
+      color: var(--blue-1);
+        transform: scale(1.1);
+    }
+  }
+}

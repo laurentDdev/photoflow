@@ -1,0 +1,103 @@
+.modalPicture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 50%;
+  width: 30%;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  padding: 20px;
+}
+
+.modalPictureHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    color: var(--gray-1);
+    font-family: var(--font-family), sans-serif;
+    font-weight: bold;
+  }
+
+  i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+
+    &:hover {
+      color: var(--red-1);
+        transform: scale(1.1);
+    }
+  }
+}
+
+.label {
+  font-family: var(--font-family), serif;
+  font-weight: bold;
+}
+
+.input {
+  background-color: white;
+  font-family: var(--font-family), serif;
+  outline: none;
+  box-shadow: var(--box-shadow);
+}
+
+.textarea {
+  background-color: white;
+  font-family: var(--font-family), serif;
+  outline: none;
+  box-shadow: var(--box-shadow);
+  resize: none;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.picture {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 80px;
+  }
+}
+
+.inputFile {
+  position: relative;
+  display: flex;
+  input {
+    display: none;
+  }
+
+  label {
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    display: flex;
+    gap: 10px;
+    &:hover {
+      background-color: var(--gray-2);
+    }
+  }
+}
+
+
+.pictureSelected {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  margin-bottom: 10px;
+}
