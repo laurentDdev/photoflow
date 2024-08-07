@@ -14,16 +14,20 @@ const _postSchema = new mongoose.Schema({
         required: true
     },
     likes: {
-        type: Number,
-        default: 0
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
     },
     comments: {
-        type: Array,
-        default: []
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "Comment",
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 

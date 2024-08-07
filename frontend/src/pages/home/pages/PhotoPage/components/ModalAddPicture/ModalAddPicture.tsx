@@ -3,12 +3,18 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
+import {createPost} from "../../../../../../apis/post.api.ts";
+import {IPhoto} from "../../../../../../models/Photo.ts";
+import {useNavigate} from "react-router-dom";
 
 type Props = {
     toggleModalPhoto: () => void
+    addNewPost: (newPhoto: IPhoto) => void
 }
 
-const ModalAddPicture = ({toggleModalPhoto}: Props) => {
+const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
+
+    const navigate = useNavigate()
 
     const validationSchema = yup.object({
         name: yup.string().required("Le nom est obligatoire").min(3, "Le nom doit contenir au moins 3 caractères"),
@@ -24,7 +30,7 @@ const ModalAddPicture = ({toggleModalPhoto}: Props) => {
         image: ""
     }
 
-    const {register,watch, handleSubmit,setValue, formState: {errors,isSubmitting}} = useForm({
+    const {register,clearErrors,reset,watch, handleSubmit,setValue, formState: {errors,isSubmitting}} = useForm({
         resolver: yupResolver(validationSchema),
         defaultValues: initialValues,
     })
@@ -38,8 +44,34 @@ const ModalAddPicture = ({toggleModalPhoto}: Props) => {
         }
     }, [watchImage]);
 
-    const onSubmit = handleSubmit((values) => {
-        console.log(values)
+    const onSubmit = handleSubmit(async (values) => {
+        const name = values.name
+        const description = values.description
+        const imageList = values.image as FileList
+        const image = imageList[0]
+
+        const formData = new FormData()
+        formData.append("name", name)
+        formData.append("description", description)
+        formData.append("image", image)
+
+        try {
+            const createdPost = await createPost(formData)
+            if (createdPost) {
+                clearErrors()
+                reset()
+                setImageUrl(null)
+                toggleModalPhoto()
+
+                console.log(createdPost)
+                addNewPost(createdPost)
+            }
+        } catch (e) {
+            console.log(e)
+            if (e == "Session expirée") {
+                navigate("/auth")
+            }
+        }
     })
 
 
@@ -56,7 +88,7 @@ const ModalAddPicture = ({toggleModalPhoto}: Props) => {
                             imageUrl ? (
                                 <div className={styles.pictureSelected}>
                                     <img src={imageUrl} height={100}/>
-                                    <span className={"btn btn-reverse-primary"} onClick={() => {
+                                    <span className={"btn btn-danger"} onClick={() => {
                                         setImageUrl(null)
                                         setValue("image", "")
                                     }}>Annuler</span>
@@ -81,7 +113,7 @@ const ModalAddPicture = ({toggleModalPhoto}: Props) => {
                         <textarea className={styles.textarea} {...register("description")} rows={10}></textarea>
                         {errors.description && <p>{errors.description.message}</p>}
                     </div>
-                    <button disabled={isSubmitting} className={"btn btn-reverse-primary"}>Publier <i className={"fa-solid fa-camera"}></i>
+                    <button type={"submit"} disabled={isSubmitting} className={"btn btn-reverse-primary"}>Publier <i className={"fa-solid fa-camera"}></i>
                     </button>
                 </form>
             </div>

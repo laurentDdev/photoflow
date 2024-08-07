@@ -1,15 +1,24 @@
 import HeaderBar from "./components/HeaderBar/HeaderBar.tsx";
 import {lazy, useState} from "react";
 import {createPortal} from "react-dom";
+import {IPost} from "../../../../models/Photo.ts";
+import {useLoaderData} from "react-router-dom";
+import PostCard from "./components/PostCard/PostCard.tsx";
+import styles from "./PhotoPage.module.scss"
 
 const ModalAddPicture = lazy(() => import("./components/ModalAddPicture/ModalAddPicture.tsx"))
 
 
 const PhotoPage = () => {
 
+    const postsFetch = useLoaderData() as IPost[];
+
+
     const [filter, setFilter] = useState<string>("");
 
     const [openModalPhoto, setOpenModalPhoto] = useState<boolean>(false);
+
+    const [posts, setPosts] = useState<IPost[]>(postsFetch);
 
     const updateFilter = (value: string) => {
         setFilter(value);
@@ -19,8 +28,8 @@ const PhotoPage = () => {
         setOpenModalPhoto(prevState => !prevState);
     }
 
-    const addNewPhotos = () => {
-        console.log("Add new photos")
+    const addNewPost = (newPost: IPost) => {
+        setPosts(prevState => [...prevState, newPost])
     }
 
     const showNotifications = () => {
@@ -32,9 +41,14 @@ const PhotoPage = () => {
             <div className={"flex-fill p-20"}>
                 <HeaderBar filter={filter} setFilter={updateFilter} toggleModalPhoto={toggleModalPhoto}
                            showNotifications={showNotifications}/>
+                <div className={styles.postContainer}>
+                    {posts && posts.filter((p) => p.name.toLowerCase().startsWith(filter.toLowerCase())).map((post) => (
+                        <PostCard key={post._id} post={post} />
+                    ))}
+                </div>
             </div>
             {
-                openModalPhoto && createPortal(<ModalAddPicture toggleModalPhoto={toggleModalPhoto}/>, document.body)
+                openModalPhoto && createPortal(<ModalAddPicture addNewPost={addNewPost} toggleModalPhoto={toggleModalPhoto}/>, document.body)
             }
         </>
     );

@@ -1,0 +1,7 @@
+.postContainer {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 350px);
+  grid-auto-columns: repeat(4, 350px);
+  gap: 20px;
+}

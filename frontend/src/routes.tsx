@@ -3,6 +3,7 @@ import App from "./App.tsx";
 import {lazy} from "react";
 import {rootLoader} from "./loaders/rootLoader.ts";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import {postsLoader} from "./loaders/postsLoader.ts";
 
 const AuthPage = lazy(() => import("./pages/auth/AuthPage.tsx"))
 const RegisterPage = lazy(() => import("./pages/auth/RegisterPage/RegisterPage.tsx"))
@@ -25,6 +26,7 @@ export const routes = createBrowserRouter([
                 children: [
                     {
                         index: true,
+                        loader: postsLoader,
                         element: <PhotosPage/>
 
                     },
