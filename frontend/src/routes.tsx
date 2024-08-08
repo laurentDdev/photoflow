@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom"
+import {Navigate, createBrowserRouter} from "react-router-dom"
 import App from "./App.tsx";
 import {lazy} from "react";
 import {rootLoader} from "./loaders/rootLoader.ts";
@@ -27,7 +27,8 @@ export const routes = createBrowserRouter([
                     {
                         index: true,
                         loader: postsLoader,
-                        element: <PhotosPage/>
+                        element: <PhotosPage/>,
+                        errorElement: <Navigate to="/auth"/>
 
                     },
                     {

@@ -10,7 +10,7 @@ const _postService = {
             author: authorId
         })
 
-        const savedPost = ((await (await post.save()).populate("author").populate("likes"))).save();
+        const savedPost = ((await (await post.save()).populate("author")).populate("likes"));
         return savedPost;
     },
 
