@@ -1,18 +1,20 @@
 import HeaderBar from "./components/HeaderBar/HeaderBar.tsx";
-import {lazy, useState} from "react";
+import {lazy, useContext, useMemo, useState} from "react";
 import {createPortal} from "react-dom";
 import {IPost} from "../../../../models/Photo.ts";
 import {useLoaderData} from "react-router-dom";
 import PostCard from "./components/PostCard/PostCard.tsx";
 import styles from "./PhotoPage.module.scss"
+import {AuthContext, AuthContextType} from "../../../../contexts/AuthContext.tsx";
 
 const ModalAddPicture = lazy(() => import("./components/ModalAddPicture/ModalAddPicture.tsx"))
 
 
 const PhotoPage = () => {
 
-    const postsFetch = useLoaderData() as IPost[];
+    const {user} = useContext(AuthContext) as AuthContextType
 
+    const postsFetch = useLoaderData() as IPost[];
 
     const [filter, setFilter] = useState<string>("");
 
@@ -43,7 +45,7 @@ const PhotoPage = () => {
                            showNotifications={showNotifications}/>
                 <div className={styles.postContainer}>
                     {posts && posts.filter((p) => p.name.toLowerCase().startsWith(filter.toLowerCase())).map((post) => (
-                        <PostCard key={post._id} post={post} />
+                        <PostCard key={post._id} post={post} user={user} />
                     ))}
                 </div>
             </div>
