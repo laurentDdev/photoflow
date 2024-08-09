@@ -21,7 +21,7 @@ const _userSchema = new mongoose.Schema({
     accountType: {
         type: String,
         default: "free"
-    }
+    },
 })
 
 module.exports = mongoose.model("User", _userSchema)

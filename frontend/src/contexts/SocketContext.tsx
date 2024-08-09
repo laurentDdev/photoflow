@@ -1,5 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import io, {Socket} from "socket.io-client";
+import {AuthContext, AuthContextType} from "./AuthContext.tsx";
 
 export type SocketContextType = {
     socket: Socket | null
@@ -19,9 +20,12 @@ export const useSocket = () => {
 export const SocketProvider = ({children}: Props) => {
 
     const [socket, setSocket] = useState<Socket | null>(null)
+    const {user} = useContext(AuthContext) as AuthContextType
 
     useEffect(() => {
-        const newSocket = io("http://localhost:3000")
+        const newSocket = io("http://localhost:3000", {
+            query: {userId: user?._id}
+        })
         setSocket(newSocket)
 
         return () => {

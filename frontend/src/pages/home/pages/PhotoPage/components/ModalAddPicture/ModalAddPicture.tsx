@@ -63,7 +63,6 @@ const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
                 setImageUrl(null)
                 toggleModalPhoto()
 
-                console.log(createdPost)
                 addNewPost(createdPost)
             }
         } catch (e) {

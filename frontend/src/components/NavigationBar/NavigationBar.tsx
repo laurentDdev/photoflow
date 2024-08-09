@@ -6,7 +6,6 @@ import {Navigate, NavLink} from "react-router-dom";
 const NavigationBar = () => {
 
     const {user, logout} = useContext(AuthContext) as AuthContextType
-    console.log(user)
 
     return (
         <>

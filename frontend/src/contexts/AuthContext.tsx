@@ -31,7 +31,6 @@ export const AuthProvider = ({children}: Props) => {
 
     const login = async (credentials: ILoginUser) => {
         const user = await loginUser(credentials)
-        console.log(user)
         setUser(user)
     }
 

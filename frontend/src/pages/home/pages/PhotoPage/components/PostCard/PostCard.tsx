@@ -18,7 +18,7 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
 
     useEffect(() => {
         if (post.likes) {
-            setIsLiked(post.likes.some((like) => like._id === user._id))
+            setIsLiked(!!post.likes.find((like) => like._id === user._id))
         }
         if (post.favorites) {
             setIsFavorite(post.favorites.some((favorite) => favorite._id === user._id))
@@ -26,7 +26,7 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
     }, [post.likes, user._id, post.favorites]);
 
     return (
-        <div className={"card p-10"}>
+        <div className={`card p-10 ${styles.card}`}>
             <div className={`d-flex align-items-center ${styles.cardHeader} mb-10`}>
                 <img height={50}
                      src={`${import.meta.env.VITE_PUBLIC_API_URL}/assets/avatars/${typeof post.author !== "string" ? post.author?.avatar + '.png' : ''}`}
@@ -62,7 +62,7 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
                     <ul className={"d-flex"}>
                         {
                             post.likes.slice(0, 2).map((like) => (
-                                <img key={post._id} height={15}
+                                <img key={like._id} height={15}
                                      src={`${import.meta.env.VITE_PUBLIC_API_URL}assets/avatars/${like.avatar}.png`}
                                      alt=""/>
                             ))

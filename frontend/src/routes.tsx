@@ -3,9 +3,9 @@ import App from "./App.tsx";
 import {lazy} from "react";
 import {rootLoader} from "./loaders/rootLoader.ts";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
-import {postsLoader} from "./loaders/postsLoader.ts";
+import {homeLoader} from "./loaders/homeLoader.ts";
+import AuthPage from "./pages/auth/AuthPage.tsx";
 
-const AuthPage = lazy(() => import("./pages/auth/AuthPage.tsx"))
 const RegisterPage = lazy(() => import("./pages/auth/RegisterPage/RegisterPage.tsx"))
 const LoginPage = lazy(() => import("./pages/auth/LoginPage/LoginPage.tsx"))
 const HomePage = lazy(() => import("./pages/home/HomePage.tsx"))
@@ -23,7 +23,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 element: <ProtectedRoute><HomePage/></ProtectedRoute>,
-                loader: postsLoader,
+                loader: homeLoader,
                 errorElement: <Navigate to="/auth"/>,
                 children: [
                     {

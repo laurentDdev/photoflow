@@ -2,8 +2,6 @@ const post_url = "/api/posts/"
 
 export const createPost = async (data: FormData) => {
 
-    console.log(data)
-
     const response = await fetch(post_url, {
         method: "POST",
         body: data
@@ -16,8 +14,6 @@ export const createPost = async (data: FormData) => {
         if (body) {
             throw body
         } else {
-
-
             throw new Error("Erreur lors de la création de la publication")
         }
     }

@@ -1,7 +1,7 @@
 import NavigationBar from "../../components/NavigationBar/NavigationBar.tsx";
 import {Outlet} from "react-router-dom";
 import {Suspense} from "react";
-import {PostProvider} from "../../contexts/PostContext.tsx";
+import {HomeProvider} from "../../contexts/HomeContext.tsx";
 import MobileNavigationBar from "../../components/MobileNavigationBar/MobileNavigationBar.tsx";
 import {SocketProvider} from "../../contexts/SocketContext.tsx";
 
@@ -11,13 +11,13 @@ const HomePage = () => {
             <div className={"d-flex"}>
                 <NavigationBar/>
                 <MobileNavigationBar/>
-                <PostProvider>
+                <HomeProvider>
                     <Suspense fallback={<div>Loading...</div>}>
 
                         <Outlet/>
 
                     </Suspense>
-                </PostProvider>
+                </HomeProvider>
             </div>
         </SocketProvider>
     );

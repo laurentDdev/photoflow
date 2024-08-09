@@ -36,11 +36,10 @@ const RegisterForm = ({handleLogin}: Props) => {
     })
 
     const onSubmit = handleSubmit(async (values) => {
-        console.log(values)
 
         try {
             clearErrors()
-            const user = await registerUser({username: values.pseudo, email: values.email, password: values.password})
+            await registerUser({username: values.pseudo, email: values.email, password: values.password})
             handleLogin()
         }catch (e) {
             console.log(e)
