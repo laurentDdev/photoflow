@@ -19,3 +19,46 @@
     color: white;
   }
 }
+
+.mobileNavContent {
+  position: absolute;
+  background: var(--blue-1);
+  top: -280%;
+  left: -180%;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: max-content;
+  font-family: var(--font-family), sans-serif;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+
+    a {
+      color: white;
+      font-size: 1rem;
+      text-decoration: none;
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: start;
+
+      i {
+        font-size: 0.7rem;
+        padding: 4px;
+        width: 20px;
+      }
+    }
+  }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
