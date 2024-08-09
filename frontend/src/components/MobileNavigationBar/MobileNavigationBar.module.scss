@@ -1,0 +1,21 @@
+@use "../../assets/styles/mixins" as mixins;
+
+.mobileNav {
+  background: var(--blue-1);
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 10px;
+
+  display: none;
+
+  @include mixins.md-lt {
+    display: block;
+  }
+
+  i {
+    color: white;
+  }
+}

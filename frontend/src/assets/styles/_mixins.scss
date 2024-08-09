@@ -23,25 +23,25 @@
 }
 
 @mixin md-lt {
-  @media (max-width: 992px) {
+  @media (max-width: 768px) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (min-width: 993px) and (max-width: 1200px) {
+  @media (min-width: 769px) and (max-width: 1224px) {
     @content;
   }
 }
 
 @mixin lg-lt {
-  @media (max-width: 1200px) {
+  @media (max-width: 1280px) {
     @content;
   }
 }
 
 @mixin xl {
-  @media (min-width: 1201px) {
+  @media (min-width: 1281px) {
     @content;
   }
 }

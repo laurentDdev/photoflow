@@ -1,3 +1,4 @@
+@use "../../../../../../assets/styles/mixins" as mixins;
 
 .headerBar {
   display: flex;
@@ -8,6 +9,15 @@
 .inputFilter {
   position: relative;
   width: 25%;
+
+  @include mixins.lg-lt {
+    width: 40%;
+  }
+
+
+  @include mixins.md-lt {
+    width: 100%;
+  }
 
   input {
     background-color: white;
@@ -30,6 +40,10 @@
   display: flex;
   gap: 10px;
 
+  @include mixins.md-lt {
+    display: none;
+  }
+
   i {
     font-size: 1.5rem;
     cursor: pointer;
@@ -37,7 +51,7 @@
 
     &:hover {
       color: var(--blue-1);
-        transform: scale(1.1);
+      transform: scale(1.1);
     }
   }
 }

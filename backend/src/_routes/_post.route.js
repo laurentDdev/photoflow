@@ -8,5 +8,7 @@ const upload = multer({storage: storage});
 
 _postRoute.post("/", _jwtMiddleware,upload.single("image"),_postController.create)
 _postRoute.get("/", _jwtMiddleware, _postController.findAll)
+_postRoute.post("/:id/like", _jwtMiddleware, _postController.like)
+_postRoute.post("/:id/favorite", _jwtMiddleware, _postController.favorite)
 
 module.exports = _postRoute;

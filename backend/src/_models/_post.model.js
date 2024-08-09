@@ -17,6 +17,10 @@ const _postSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: "User"
     },
+    favorites: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
+    },
     comments: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Comment",
@@ -31,6 +35,4 @@ const _postSchema = new mongoose.Schema({
     }
 })
 
-const Post = mongoose.model("Post", _postSchema)
-
-module.exports = Post;
+module.exports = mongoose.model("Post", _postSchema);

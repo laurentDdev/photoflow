@@ -1,7 +1,41 @@
+@use "../../../../assets/styles/mixins" as mixins;
+
+
+.photoPage {
+  flex: 1;
+  padding: 20px;
+
+  @include mixins.md-lt {
+    padding: 20px 5px;
+  }
+}
+
 .postContainer {
   margin-top: 50px;
   display: grid;
+  height: 85vh;
   grid-template-columns: repeat(4, 350px);
   grid-auto-columns: repeat(4, 350px);
   gap: 20px;
+  overflow-y: scroll;
+  justify-content: center;
+  padding: 20px 0;
+
+  @include mixins.lg-lt {
+    grid-template-columns: repeat(2, 350px);
+    grid-auto-columns: repeat(2, 350px);
+
+    margin-top: 25px;
+  }
+
+  @include mixins.sm-lt {
+    grid-template-columns: 350px;
+    grid-auto-columns: 350px;
+  }
+
+}
+
+.postContainer::-webkit-scrollbar {
+  width: 10px;
+
 }

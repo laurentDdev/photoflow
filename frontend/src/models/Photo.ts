@@ -9,5 +9,6 @@ export interface IPost {
     name: string
     image: string
     comments:  unknown[]
-    likes: IUser[]
+    likes: IUser[],
+    favorites: IUser[]
 }

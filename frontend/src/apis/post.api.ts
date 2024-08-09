@@ -17,9 +17,6 @@ export const createPost = async (data: FormData) => {
             throw body
         } else {
 
-            if (response.status === 401) {
-                throw new Error("Session expirée")
-            }
 
             throw new Error("Erreur lors de la création de la publication")
         }
@@ -39,9 +36,6 @@ export const getPosts = async () => {
             throw body
         } else {
 
-            if (response.status === 401) {
-                throw new Error("Session expirée")
-            }
 
             throw new Error("Erreur lors de la récupération des publications")
         }
@@ -49,5 +43,37 @@ export const getPosts = async () => {
 }
 
 export const likePost = async (postId: string) => {
+    const response = await fetch(post_url + postId + "/like", {
+        method: "POST"
+    })
 
+    const body = await response.json()
+    if (response.ok) {
+        return body
+    } else {
+        if (body) {
+            throw body
+        } else {
+
+            throw new Error("Erreur lors de la mise à jour de la publication")
+        }
+    }
+}
+
+export const favoritePost = async (postId: string) => {
+    const response = await fetch(post_url + postId + "/favorite", {
+        method: "POST"
+    })
+
+    const body = await response.json()
+    if (response.ok) {
+        return body
+    } else {
+        if (body) {
+            throw body
+        } else {
+
+            throw new Error("Erreur lors de la mise à jour de la publication")
+        }
+    }
 }

@@ -12,7 +12,7 @@ export type IUser = {
 }
 
 export type AuthContextType = {
-    user: IUser
+    user: IUser | null
     login: (credentials: ILoginUser) => void
     logout: () => void
 }
@@ -26,8 +26,8 @@ type Props = {
 
 export const AuthProvider = ({children}: Props) => {
 
-    const initialUser = useLoaderData()
-    const [user, setUser] = useState(initialUser)
+    const initialUser = useLoaderData() as IUser | null
+    const [user, setUser] = useState<IUser | null>(initialUser)
 
     const login = async (credentials: ILoginUser) => {
         const user = await loginUser(credentials)

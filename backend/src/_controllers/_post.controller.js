@@ -28,6 +28,36 @@ const _postController = {
             console.log(e)
             res.status(500).json({message: "Internal server error"})
         }
+    },
+    like: async (req, res) => {
+        try {
+            const postId = req.params.id;
+            const userId = req.userId;
+
+            const post = await _postService.like(postId, userId);
+
+            if (post) {
+                res.status(200).json(post)
+            }
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Internal server error"})
+        }
+    },
+    favorite: async (req, res) => {
+        try {
+            const postId = req.params.id;
+            const userId = req.userId;
+
+            const post = await _postService.favorite(postId, userId);
+
+            if (post) {
+                res.status(200).json(post)
+            }
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Internal server error"})
+        }
     }
 }
 

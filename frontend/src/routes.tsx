@@ -23,13 +23,12 @@ export const routes = createBrowserRouter([
         children: [
             {
                 element: <ProtectedRoute><HomePage/></ProtectedRoute>,
+                loader: postsLoader,
+                errorElement: <Navigate to="/auth"/>,
                 children: [
                     {
                         index: true,
-                        loader: postsLoader,
                         element: <PhotosPage/>,
-                        errorElement: <Navigate to="/auth"/>
-
                     },
                     {
                         path: 'fav',

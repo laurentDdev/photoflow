@@ -67,8 +67,7 @@ const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
                 addNewPost(createdPost)
             }
         } catch (e) {
-            console.log(e)
-            if (e == "Session expirée") {
+            if (e.message == "Unauthorized") {
                 navigate("/auth")
             }
         }
