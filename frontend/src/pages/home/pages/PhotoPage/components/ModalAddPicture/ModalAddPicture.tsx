@@ -3,8 +3,7 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
-import {createPost} from "../../../../../../apis/post.api.ts";
-import {IPhoto} from "../../../../../../models/Photo.ts";
+import {createPost} from "../../../../../../apis/post.api.ts"; 0
 import {useNavigate} from "react-router-dom";
 
 type Props = {

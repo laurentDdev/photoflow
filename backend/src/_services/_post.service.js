@@ -60,15 +60,27 @@ const _postService = {
         console.log("PostId: ", postId)
         const post = await _post.findById(postId);
 
-        console.log(post.favorites)
+        let isFavorite = false
 
         if (post.favorites.includes(userId)) {
             post.favorites = post.favorites.filter(favorite => favorite.toString() !== userId);
         } else {
             post.favorites.push(userId);
+            isFavorite = true
         }
 
         const updatedPost = await post.save();
+
+        if (isFavorite && userId !== updatedPost.author.toString()) {
+            const notification = new _notification({
+                sender: userId,
+                receiver: updatedPost.author,
+                content: `A mis en favoris votre post`
+            })
+
+            const savedNotification = await notification.save();
+            _socketManager.emitToUser(updatedPost.author, "receiveNotification", await (await savedNotification.populate("sender", "username avatar")).populate("receiver", "username avatar"));
+        }
 
         const populatedPost = await _post.findById(postId).populate("favorites").populate("likes").populate("author").exec();
         return populatedPost;

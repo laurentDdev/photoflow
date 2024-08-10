@@ -4,8 +4,9 @@ const USER_API = "/api/users/"
 
 export type IUserNotification = {
     _id: string
-    sender: IUser | null
-    receiver: IUser | null
+    sender: IUser
+    receiver: IUser
+    content: string
     createdAt: string
 }
 

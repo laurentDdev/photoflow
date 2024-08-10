@@ -12,13 +12,16 @@ const mySocket = (server) => {
     io.on("connection", (socket) => {
         console.log("Un utilisateur s'est connecté")
         _socketManager.addSocket(socket);
+
+        socket.on("disconnect", (reason) => {
+            console.log("Un utilisateur s'est déconnecté", reason)
+            _socketManager.removeSocket(socket);
+        })
     })
 
 
     return io;
 }
-
-
 
 
 module.exports = mySocket;

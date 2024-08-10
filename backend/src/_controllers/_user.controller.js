@@ -9,7 +9,8 @@ const _userController = {
             res.status(200).json(notifcaiions)
 
         }catch (e) {
-
+            console.log(e)
+            res.status(500).json({message: "Internal server error"})
         }
     }
 }

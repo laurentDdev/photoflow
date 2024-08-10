@@ -29,7 +29,7 @@ export const SocketProvider = ({children}: Props) => {
         setSocket(newSocket)
 
         return () => {
-            newSocket.close()
+            newSocket.disconnect()
         }
     }, []);
 

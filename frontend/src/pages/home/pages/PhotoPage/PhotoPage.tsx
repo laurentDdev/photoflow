@@ -43,6 +43,7 @@ const PhotoPage = () => {
 
             socket.socket?.on("receiveNotification", (data) => {
                 console.log(data)
+                setNotifications([data, ...notifications])
             })
 
         }
