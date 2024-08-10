@@ -29,6 +29,7 @@
   background-size: cover;
   height: 300px;
   width: 100%;
+  object-fit: cover;
 
 
   &:hover {
@@ -73,7 +74,22 @@
 
 .cardFooterDate {
   display: flex;
-  justify-content: end;
   font-weight: normal;
   color: var(--gray-1);
+  flex-direction: column;
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  div {
+    display: flex;
+    justify-content: end;
+
+    p {
+        margin: 0;
+        font-weight: normal;
+    }
+  }
 }

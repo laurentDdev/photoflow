@@ -1,5 +1,5 @@
 import HeaderBar from "./components/HeaderBar/HeaderBar.tsx";
-import {lazy, useContext, useEffect, useMemo, useState} from "react";
+import {lazy, useContext, useEffect, useState} from "react";
 import {createPortal} from "react-dom";
 import {IPost} from "../../../../models/Photo.ts";
 import {Navigate, useNavigate} from "react-router-dom";
@@ -52,7 +52,7 @@ const PhotoPage = () => {
             socket?.socket?.off("likePost")
             socket?.socket?.off("receiveNotification")
         }
-    }, [socket, posts, setPosts]);
+    }, [socket, posts, setPosts, notifications]);
 
     const updateFilter = (value: string) => {
         setFilter(value);
@@ -89,6 +89,8 @@ const PhotoPage = () => {
                 });
             }
         } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             if (e.message == "Unauthorized") {
                 navigate("/auth")
             }
@@ -111,6 +113,8 @@ const PhotoPage = () => {
                 })
             }
         } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             if (e.message == "Unauthorized") {
                 navigate("/auth")
             }

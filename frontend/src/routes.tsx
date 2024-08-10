@@ -32,7 +32,7 @@ export const routes = createBrowserRouter([
                     },
                     {
                         path: 'fav',
-                        element: <FavPage/>
+                        element: <FavPage/>,
                     },
                     {
                         path: 'profile',

@@ -49,11 +49,13 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
                         }
                         <i className={"fa-regular fa-comment"}></i>
                         <i className={"fa-solid fa-share"}></i>
+
                     </div>
                     {
                         isFavorite ? <i className={"fa-solid fa-bookmark"} onClick={() => toggleFavorite(post._id)}></i>
                             : <i className={"fa-regular fa-bookmark"} onClick={() => toggleFavorite(post._id)}></i>
                     }
+
                 </div>
             </div>
             <div className={styles.cardFooter}>
@@ -68,19 +70,17 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
                             ))
                         }
                     </ul>
+
                 </div>
                 <div className={styles.cardFooterDate}>
-                    <p>Posté le {new Date(post.createdAt).toLocaleDateString()}</p>
+                    <p className={"mb-10"}>{post.name.length > 15 ? post.name.slice(0, 15) + "..." : post.name}</p>
+                    <div>
+                        <p>Posté le {new Date(post.createdAt).toLocaleDateString()}</p>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
-
-
-// fa-solid fa-heart
-// fa-solid fa-comment
-// fa-solid fa-share
-// fa-solid fa-bookmark
 
 export default PostCard;

@@ -12,7 +12,7 @@ const _userController = {
             console.log(e)
             res.status(500).json({message: "Internal server error"})
         }
-    }
+    },
 }
 
 
