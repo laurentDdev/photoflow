@@ -8,6 +8,7 @@ import {IUser} from "../models/User.ts";
 
 export type AuthContextType = {
     user: IUser | null
+    setUser: React.Dispatch<React.SetStateAction<IUser | null>>
     login: (credentials: ILoginUser) => void
     logout: () => void
 }
@@ -35,7 +36,7 @@ export const AuthProvider = ({children}: Props) => {
     }
 
     return (
-        <AuthContext.Provider value={{user, login, logout}}>
+        <AuthContext.Provider value={{user,setUser, login, logout}}>
             {children}
         </AuthContext.Provider>
     )

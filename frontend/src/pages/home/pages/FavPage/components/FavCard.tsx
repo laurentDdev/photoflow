@@ -26,7 +26,10 @@ const FavCard = ({post, deleteFavorite, userId}: Props) => {
     return (
         <>
             <div className={styles.favCard} onClick={() => setPreview(true)}>
-                <div className={styles.favCardAction} onClick={deleteFavorite}>
+                <div className={styles.favCardAction} onClick={(e) => {
+                    e.stopPropagation()
+                    deleteFavorite()
+                }}>
                     <i className={"fa-solid fa-trash"}></i>
                 </div>
                 <img

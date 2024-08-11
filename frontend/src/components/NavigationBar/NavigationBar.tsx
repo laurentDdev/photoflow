@@ -14,7 +14,8 @@ const NavigationBar = () => {
                     <>
                         <div className={"d-flex flex-column align-items-center"}>
                             <div className={styles.headerInfos}>
-                                <img height={50} src={`http://localhost:3000/assets/avatars/${user.avatar}.png`}
+                                <img height={50}
+                                     src={`${import.meta.env.VITE_PUBLIC_API_URL}assets/avatars/${user.avatar}.png`}
                                      alt=""/>
                                 <h3>{user.username}</h3>
                                 <span

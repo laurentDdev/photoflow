@@ -23,7 +23,7 @@ export const SocketProvider = ({children}: Props) => {
     const {user} = useContext(AuthContext) as AuthContextType
 
     useEffect(() => {
-        const newSocket = io("http://localhost:3000", {
+        const newSocket = io("http://power.edu-hopeheberg.fr:3001/", {
             query: {userId: user?._id}
         })
         setSocket(newSocket)
