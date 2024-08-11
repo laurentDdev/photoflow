@@ -1,4 +1,18 @@
-const post_url = "/api/posts/"
+import {IPost} from "../models/Post.ts";
+import {IUser} from "../models/User.ts";
+
+const post_url = "http://localhost:3000/api/posts/"
+
+
+export type IPostComment = {
+    _id: string
+    comment: string
+    author:  IUser
+    post: string | IPost
+    likes: number
+    replies: IPostComment[]
+    createdAt: string
+}
 
 export const createPost = async (data: FormData) => {
 
@@ -62,6 +76,29 @@ export const favoritePost = async (postId: string) => {
     })
 
     const body = await response.json()
+    if (response.ok) {
+        return body
+    } else {
+        if (body) {
+            throw body
+        } else {
+
+            throw new Error("Erreur lors de la mise à jour de la publication")
+        }
+    }
+}
+
+export const commentPost = async (postId: string, comment: string) => {
+    const response = await fetch(post_url + postId + "/comment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({comment})
+    })
+
+    const body = await response.json()
+
     if (response.ok) {
         return body
     } else {

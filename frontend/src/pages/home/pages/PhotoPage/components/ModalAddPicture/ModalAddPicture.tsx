@@ -3,12 +3,13 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
-import {createPost} from "../../../../../../apis/post.api.ts"; 0
+import {createPost} from "../../../../../../apis/post.api.ts"; 
 import {useNavigate} from "react-router-dom";
+import {IPost} from "../../../../../../models/Post.ts";
 
 type Props = {
     toggleModalPhoto: () => void
-    addNewPost: (newPhoto: IPhoto) => void
+    addNewPost: (newPhoto: IPost) => void
 }
 
 const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
@@ -65,6 +66,8 @@ const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
                 addNewPost(createdPost)
             }
         } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             if (e.message == "Unauthorized") {
                 navigate("/auth")
             }
@@ -84,7 +87,7 @@ const ModalAddPicture = ({toggleModalPhoto, addNewPost}: Props) => {
                         {
                             imageUrl ? (
                                 <div className={styles.pictureSelected}>
-                                    <img src={imageUrl} height={100}/>
+                                    <img alt={"image selectionné"} src={imageUrl} height={100}/>
                                     <span className={"btn btn-danger"} onClick={() => {
                                         setImageUrl(null)
                                         setValue("image", "")

@@ -1,9 +1,9 @@
 import {createContext, useContext, useState} from "react";
-import {IPost} from "../models/Photo.ts";
+import {IPost} from "../models/Post.ts";
 import {useLoaderData, useNavigate} from "react-router-dom";
-import {IUserNotification} from "../apis/user.api.ts";
 import {AuthContext, AuthContextType} from "./AuthContext.tsx";
-import {favoritePost, likePost} from "../apis/post.api.ts";
+import {favoritePost, likePost, commentPost as commentPostApi} from "../apis/post.api.ts";
+import {IUserNotification} from "../models/Notification.ts";
 
 export type homeContextType = {
     posts: IPost[] | null
@@ -14,10 +14,10 @@ export type homeContextType = {
     toggleFavoritePost: (postId: string) => void
     addPost: (post: IPost) => void
     toggleLike: (postId: string) => void
+    commentPost: (postId: string, comment: string, callback: () => void) => void
 }
 
 export const homeContext = createContext<homeContextType | null>(null);
-
 
 
 type Props = {
@@ -50,6 +50,34 @@ export const HomeProvider = ({children}: Props) => {
             if (!prev) return prev;
             return [post, ...prev]
         })
+    }
+
+    const commentPost = async (postId: string, comment: string, callback: () => void) => {
+        try {
+            const savedComment = await commentPostApi(postId, comment)
+            if (savedComment) {
+                setPosts(prevState => {
+                    if (!prevState) return prevState
+                    return prevState.map((p) => {
+                        if (p._id === postId) {
+                            return {
+                                ...p,
+                                comments: [savedComment, ...p.comments ]
+                            }
+                        }
+                        return p
+                    })
+                })
+            }
+            callback()
+        } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            if (e.message == "Unauthorized") {
+                navigate("/auth")
+            }
+            console.error(e)
+        }
     }
 
     const toggleFavoritePost = async (postId: string) => {
@@ -104,7 +132,17 @@ export const HomeProvider = ({children}: Props) => {
     }
 
     return (
-        <homeContext.Provider value={{posts, setPosts, notifications, setNotifications, getMyFavoritesPosts, toggleFavoritePost, addPost, toggleLike}}>
+        <homeContext.Provider value={{
+            posts,
+            setPosts,
+            notifications,
+            setNotifications,
+            getMyFavoritesPosts,
+            toggleFavoritePost,
+            addPost,
+            toggleLike,
+            commentPost
+        }}>
             {children}
         </homeContext.Provider>
     );

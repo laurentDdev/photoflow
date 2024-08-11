@@ -1,7 +1,7 @@
 import styles from "./HeaderBar.module.scss"
-import {IUserNotification} from "../../../../../../apis/user.api.ts";
 import {useMemo, useState} from "react";
 import Notification from "../Notification/Notification.tsx";
+import {IUserNotification} from "../../../../../../models/Notification.ts";
 
 
 type Props = {

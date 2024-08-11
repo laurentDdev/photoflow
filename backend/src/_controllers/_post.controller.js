@@ -58,6 +58,25 @@ const _postController = {
             console.log(e)
             res.status(500).json({message: "Internal server error"})
         }
+    },
+    comment: async (req, res) => {
+        try {
+            const postId = req.params.id;
+            const { comment } = req.body
+            const userId = req.userId;
+
+            const createdComment = await _postService.comment(postId, comment, userId);
+            if (!createdComment) {
+                res.status(404).json({message: "Post not found"})
+                return
+            }
+
+            res.status(201).json(createdComment)
+
+        }catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Internal server error"})
+        }
     }
 }
 

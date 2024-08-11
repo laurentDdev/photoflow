@@ -1,0 +1,30 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--gray-2);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 5px;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commentContent {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+  }
+
+  div {
+    display: flex;
+    justify-content: end;
+  }
+}

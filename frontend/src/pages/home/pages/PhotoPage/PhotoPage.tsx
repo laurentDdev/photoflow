@@ -1,14 +1,15 @@
 import HeaderBar from "./components/HeaderBar/HeaderBar.tsx";
 import {lazy, useContext, useEffect, useState} from "react";
 import {createPortal} from "react-dom";
-import {IPost} from "../../../../models/Photo.ts";
+import {IPost} from "../../../../models/Post.ts";
 import {Navigate} from "react-router-dom";
 import PostCard from "./components/PostCard/PostCard.tsx";
 import styles from "./PhotoPage.module.scss"
-import {AuthContext, AuthContextType, IUser} from "../../../../contexts/AuthContext.tsx";
+import {AuthContext, AuthContextType} from "../../../../contexts/AuthContext.tsx";
 import {homeContext, homeContextType} from "../../../../contexts/HomeContext.tsx";
 import {useSocket} from "../../../../contexts/SocketContext.tsx";
-import {IUserNotification} from "../../../../apis/user.api.ts";
+import {IUser} from "../../../../models/User.ts";
+import {IUserNotification} from "../../../../models/Notification.ts";
 
 const ModalAddPicture = lazy(() => import("./components/ModalAddPicture/ModalAddPicture.tsx"))
 
@@ -58,9 +59,6 @@ const PhotoPage = () => {
     const toggleModalPhoto = () => {
         setOpenModalPhoto(prevState => !prevState);
     }
-
-
-
 
     return (
         <>

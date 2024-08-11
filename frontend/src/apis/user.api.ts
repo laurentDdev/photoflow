@@ -1,14 +1,8 @@
-import {IUser} from "../contexts/AuthContext.tsx";
 
-const USER_API = "/api/users/"
 
-export type IUserNotification = {
-    _id: string
-    sender: IUser
-    receiver: IUser
-    content: string
-    createdAt: string
-}
+const USER_API = "http://localhost:3000/api/users/"
+
+
 
 export const getUserNotifications = async () => {
     const response = await fetch(`${USER_API}notifications`, {

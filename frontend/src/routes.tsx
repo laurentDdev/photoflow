@@ -6,13 +6,20 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import {homeLoader} from "./loaders/homeLoader.ts";
 import AuthPage from "./pages/auth/AuthPage.tsx";
 
+// eslint-disable-next-line react-refresh/only-export-components
 const RegisterPage = lazy(() => import("./pages/auth/RegisterPage/RegisterPage.tsx"))
+// eslint-disable-next-line react-refresh/only-export-components
 const LoginPage = lazy(() => import("./pages/auth/LoginPage/LoginPage.tsx"))
+// eslint-disable-next-line react-refresh/only-export-components
 const HomePage = lazy(() => import("./pages/home/HomePage.tsx"))
 
+// eslint-disable-next-line react-refresh/only-export-components
 const PhotosPage = lazy(() => import("./pages/home/pages/PhotoPage/PhotoPage.tsx"))
+// eslint-disable-next-line react-refresh/only-export-components
 const FavPage = lazy(() => import("./pages/home/pages/FavPage/FavPage.tsx"))
+// eslint-disable-next-line react-refresh/only-export-components
 const ProfilePage = lazy(() => import("./pages/home/pages/ProfilePage/ProfilePage.tsx"))
+// eslint-disable-next-line react-refresh/only-export-components
 const SettingsPage = lazy(() => import("./pages/home/pages/SettingsPage/SettingsPage.tsx"))
 
 export const routes = createBrowserRouter([

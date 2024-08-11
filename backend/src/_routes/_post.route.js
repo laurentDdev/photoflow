@@ -10,5 +10,6 @@ _postRoute.post("/", _jwtMiddleware,upload.single("image"),_postController.creat
 _postRoute.get("/", _jwtMiddleware, _postController.findAll)
 _postRoute.post("/:id/like", _jwtMiddleware, _postController.like)
 _postRoute.post("/:id/favorite", _jwtMiddleware, _postController.favorite)
+_postRoute.post("/:id/comment", _jwtMiddleware, _postController.comment)
 
 module.exports = _postRoute;

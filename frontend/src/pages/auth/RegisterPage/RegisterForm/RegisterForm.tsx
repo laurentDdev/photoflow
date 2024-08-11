@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useForm} from "react-hook-form";
 import styles from "./RegisterForm.module.scss"
 import * as yup from "yup";
@@ -43,14 +43,16 @@ const RegisterForm = ({handleLogin}: Props) => {
             handleLogin()
         }catch (e) {
             console.log(e)
-
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             if (e.error == "User already exists") {
                 setError("email", {
                     type: "manual",
                     message: "Cet email est déjà utilisé"
                 })
             } else {
-                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
 
                 setError("generic", {
                     type: "generic",
@@ -94,7 +96,11 @@ const RegisterForm = ({handleLogin}: Props) => {
                     <button type={"submit"} disabled={isSubmitting} className={"btn btn-reverse-primary flex-fill"}>
                         S'inscrire
                     </button>
-                    {errors.generic && <p className={styles.error}>{errors.generic.message}</p>}
+                    {
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-expect-error
+                        errors.generic && <p className={styles.error}>{errors.generic.message}</p>
+                    }
                 </div>
             </form>
         </div>

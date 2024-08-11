@@ -85,7 +85,10 @@ const LoginForm = ({handleRegister}: Props) => {
                                     className={`btn btn-reverse-primary flex-fill ${styles.btnLogin}`}>Se
                                 connecter
                             </button>
-                            {errors.generic && <p className={styles.error}>{errors.generic.message}</p>}
+                            {
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-expect-error
+                                errors.generic && <p className={styles.error}>{errors.generic.message}</p>}
                         </div>
                     </form>
                 </div>

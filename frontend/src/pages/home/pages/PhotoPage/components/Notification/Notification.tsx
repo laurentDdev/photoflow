@@ -1,5 +1,7 @@
 import styles from "./Notification.module.scss";
-import {IUserNotification} from "../../../../../../apis/user.api.ts";
+import {useMemo} from "react";
+import {timeSince} from "../../../../../../utils/time.ts";
+import {IUserNotification} from "../../../../../../models/Notification.ts";
 
 
 type Props = {
@@ -8,33 +10,7 @@ type Props = {
 
 const Notification = ({notification}: Props) => {
 
-    function timeSince(date: Date) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        const seconds = Math.floor((new Date() - date) / 1000);
-        let interval = Math.floor(seconds / 31536000);
-
-        if (interval > 1) {
-            return "il y a " + interval + " ans";
-        }
-        interval = Math.floor(seconds / 2592000);
-        if (interval > 1) {
-            return "il y a " + interval + " mois";
-        }
-        interval = Math.floor(seconds / 86400);
-        if (interval > 1) {
-            return "il y a " + interval + " jours";
-        }
-        interval = Math.floor(seconds / 3600);
-        if (interval > 1) {
-            return "il y a " + interval + " heures";
-        }
-        interval = Math.floor(seconds / 60);
-        if (interval > 1) {
-            return "il y a " + interval + " minutes";
-        }
-        return "il y a " + Math.floor(seconds) + " secondes";
-    }
+    const elapsedTime = useMemo(() => timeSince(new Date(notification.createdAt)), [notification.createdAt]);
 
     return (
         <div  className={styles.notificationItem}>
@@ -45,8 +21,7 @@ const Notification = ({notification}: Props) => {
                          alt=""/>
                     <p>{notification.sender.username}</p>
                 </div>
-                <p>{notification.content}<p>Recu il y
-                    a {timeSince(new Date(notification.createdAt))}</p></p>
+                <p>{notification.content}<p>{elapsedTime}</p></p>
             </div>
 
         </div>

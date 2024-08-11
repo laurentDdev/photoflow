@@ -1,4 +1,6 @@
-import {IUser} from "../contexts/AuthContext.tsx";
+
+import {IPostComment} from "../apis/post.api.ts";
+import {IUser} from "./User.ts";
 
 
 export interface IPost {
@@ -8,7 +10,7 @@ export interface IPost {
     _id: string
     name: string
     image: string
-    comments:  unknown[]
+    comments:  IPostComment[]
     likes: IUser[],
     favorites: IUser[]
 }

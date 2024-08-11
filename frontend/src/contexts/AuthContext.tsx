@@ -1,15 +1,10 @@
 import {createContext, useState} from "react";
 import {useLoaderData} from "react-router-dom";
 import {ILoginUser, loginUser, logoutUser} from "../apis/auth.api.ts";
+import {IUser} from "../models/User.ts";
 
 
-export type IUser = {
-    _id: string
-    username: string
-    email: string
-    avatar: string
-    accountType: string
-}
+
 
 export type AuthContextType = {
     user: IUser | null
