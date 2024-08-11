@@ -1,6 +1,6 @@
 import styles from "./Comment.module.scss"
 import {IPostComment} from "../../../apis/post.api.ts";
-// import {useMemo} from "react";
+import {useMemo} from "react";
 import {timeSince} from "../../../utils/time.ts";
 
 
@@ -11,8 +11,7 @@ type Props = {
 const Comment = ({comment}: Props) => {
 
 
-
-    // const elapsedTime = useMemo(() => timeSince(new Date(comment.createdAt)), [comment.createdAt]);
+    const elapsedTime = useMemo(() => timeSince(new Date(comment.createdAt)), [comment.createdAt]);
 
 
     return (
@@ -25,7 +24,7 @@ const Comment = ({comment}: Props) => {
             <div className={styles.commentContent}>
                 <p>{comment.comment}</p>
                 <div>
-                    <p>{timeSince(new Date(comment.createdAt))}</p>
+                    <p>{elapsedTime}</p>
                 </div>
             </div>
         </div>

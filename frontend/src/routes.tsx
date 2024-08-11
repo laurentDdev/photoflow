@@ -22,6 +22,13 @@ const ProfilePage = lazy(() => import("./pages/home/pages/ProfilePage/ProfilePag
 // eslint-disable-next-line react-refresh/only-export-components
 const SettingsPage = lazy(() => import("./pages/home/pages/SettingsPage/SettingsPage.tsx"))
 
+// eslint-disable-next-line react-refresh/only-export-components
+const ProfilePageEdit = lazy(() => import("./pages/home/pages/ProfilePage/pages/ProfilePageEdit/ProfilePageEdit.tsx"))
+
+// eslint-disable-next-line react-refresh/only-export-components
+const ProfilePagePost = lazy(() => import("./pages/home/pages/ProfilePage/pages/ProfilePagePost/ProfilePagePost.tsx"))
+
+
 export const routes = createBrowserRouter([
     {
         path: '/',
@@ -43,7 +50,18 @@ export const routes = createBrowserRouter([
                     },
                     {
                         path: 'profile',
-                        element: <ProfilePage/>
+                        element: <ProfilePage/>,
+                        children: [
+                            {
+                                index: true,
+                                element: <ProfilePageEdit/>
+
+                            },
+                            {
+                                path: 'posts',
+                                element: <ProfilePagePost/>
+                            },
+                        ]
                     },
                     {
                         path: 'settings',

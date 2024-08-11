@@ -1,5 +1,5 @@
 
-const AUTH_API = "https://g08.hopeheberg.fr:21100/api/auth"
+const AUTH_API = "/api/auth"
 
 export interface IRegisterUser {
     username: string

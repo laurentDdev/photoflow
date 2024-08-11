@@ -1,0 +1,47 @@
+.profilePageEdit {
+  background: white;
+  flex: 1;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  padding: 20px;
+    display: flex;
+  justify-content: center;
+
+  form {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    width: 60%;
+  }
+
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 40%;
+  }
+
+  .avatarInput {
+    flex: 1;
+    background: blue;
+  }
+}
+
+.input {
+  background-color: white;
+  font-family: var(--font-family), serif;
+  outline: none;
+  box-shadow: var(--box-shadow);
+}
+
+.inputPasswordContainer {
+  position: relative;
+
+  i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}
