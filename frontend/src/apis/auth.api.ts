@@ -1,5 +1,5 @@
 
-const AUTH_API = "/api/auth"
+const AUTH_API = "https://217.144.154.8:3000/api/auth"
 
 export interface IRegisterUser {
     username: string

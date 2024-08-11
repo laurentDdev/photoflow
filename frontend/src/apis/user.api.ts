@@ -1,6 +1,6 @@
 
 
-const USER_API = "/api/users/"
+const USER_API = "https://217.144.154.8:3000/api/users/"
 
 
 
