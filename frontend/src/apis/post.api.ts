@@ -1,7 +1,7 @@
 import {IPost} from "../models/Post.ts";
 import {IUser} from "../models/User.ts";
 
-const post_url = "http://g08.hopeheberg.fr:21100/api/posts/"
+const post_url = "https://g08.hopeheberg.fr:21100/api/posts/"
 
 
 export type IPostComment = {
