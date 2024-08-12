@@ -1,7 +1,7 @@
 import {IPost} from "../models/Post.ts";
 import {IUser} from "../models/User.ts";
 
-const post_url = "/api/posts/"
+const post_url = "http://power.edu-hopeheberg.fr:3000/api/posts/"
 
 
 export type IPostComment = {

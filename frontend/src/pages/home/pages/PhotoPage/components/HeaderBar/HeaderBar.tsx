@@ -48,7 +48,7 @@ const HeaderBar = ({filter, setFilter, toggleModalPhoto, notifications}: Props) 
                             {
                                notifications.length > 0 ? (
                                    notifications.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((notification) => (
-                                       <Notification notification={notification} />
+                                       <Notification notification={notification} theme={theme} />
                                    ))
                                ): <p>Vous n'avez aucune notification</p>
                             }

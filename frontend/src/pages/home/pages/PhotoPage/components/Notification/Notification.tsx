@@ -6,9 +6,10 @@ import {IUserNotification} from "../../../../../../models/Notification.ts";
 
 type Props = {
     notification: IUserNotification
+    theme: string
 }
 
-const Notification = ({notification}: Props) => {
+const Notification = ({notification, theme}: Props) => {
 
     const elapsedTime = useMemo(() => timeSince(new Date(notification.createdAt)), [notification.createdAt]);
 
@@ -19,9 +20,13 @@ const Notification = ({notification}: Props) => {
                     <img height={30}
                          src={`${import.meta.env.VITE_PUBLIC_API_URL}/assets/avatars/${notification?.sender.avatar}.png`}
                          alt=""/>
-                    <p>{notification.sender.username}</p>
+                    <p style={{
+                        color: theme !== "light" ? "#000" : ""
+                    }}>{notification.sender.username}</p>
                 </div>
-                <p>{notification.content}<p>{elapsedTime}</p></p>
+                <p style={{
+                    color: theme !== "light" ? "#000" : ""
+                }}>{notification.content}<p>{elapsedTime}</p></p>
             </div>
 
         </div>

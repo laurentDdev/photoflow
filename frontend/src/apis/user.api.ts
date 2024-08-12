@@ -1,6 +1,6 @@
 
 
-const USER_API = "/api/users/"
+const USER_API = "http://power.edu-hopeheberg.fr:3000/api/users/"
 
 
 
