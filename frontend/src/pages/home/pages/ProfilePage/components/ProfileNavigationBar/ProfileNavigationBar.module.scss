@@ -21,3 +21,16 @@
     }
   }
 }
+
+.dark {
+    background: var(--dark-1);
+    color: white;
+
+    a {
+      color: white;
+
+        &.active {
+            color: var(--blue-1);
+        }
+    }
+}

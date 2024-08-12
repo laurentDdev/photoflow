@@ -4,6 +4,7 @@ import styles from "./ModalPreviewPost.module.scss"
 import {useContext, useEffect, useRef, useState} from "react";
 import {homeContext, homeContextType} from "../../contexts/HomeContext.tsx";
 import Comment from "./components/Comment.tsx";
+import {ThemeContext, ThemeContextType} from "../../contexts/ThemeContext.tsx";
 
 type Props = {
     post: IPost,
@@ -19,6 +20,8 @@ const ModalPreviewPost = ({post, isLiked, isFavorite, closePreview}: Props) => {
 
     const [comment, setComment] = useState<string>("")
 
+    const {theme} = useContext(ThemeContext) as ThemeContextType
+
     const handleComment = () => {
         commentPost(post._id, comment, () => {
             setComment("")
@@ -32,7 +35,7 @@ const ModalPreviewPost = ({post, isLiked, isFavorite, closePreview}: Props) => {
     }, [post.comments]);
 
     return (
-        createPortal(<div className={styles.modalPreviewCard}>
+        createPortal(<div className={`${styles.modalPreviewCard} ${theme !== "light" && styles.dark}`}>
             <div>
                 <img height={300} src={`${import.meta.env.VITE_PUBLIC_API_URL}/assets/posts/${post.image}`} alt=""/>
                 <p>{post.description}</p>
@@ -68,7 +71,7 @@ const ModalPreviewPost = ({post, isLiked, isFavorite, closePreview}: Props) => {
                     <div className={styles.modalPreviewCardContentCommentItem} ref={commentContainer} >
                         {
                             post.comments.length > 0 && post.comments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((comment) => (
-                                <Comment key={comment._id} comment={comment}/>
+                                <Comment key={comment._id} comment={comment} theme={theme}/>
                             ))
                         }
                     </div>

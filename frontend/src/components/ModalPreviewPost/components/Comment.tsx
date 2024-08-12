@@ -6,20 +6,25 @@ import {timeSince} from "../../../utils/time.ts";
 
 type Props = {
     comment: IPostComment
+    theme: string
 }
 
-const Comment = ({comment}: Props) => {
+const Comment = ({comment, theme}: Props) => {
 
 
     const elapsedTime = useMemo(() => timeSince(new Date(comment.createdAt)), [comment.createdAt]);
 
 
     return (
-        <div className={styles.comment}>
+        <div className={`${styles.comment}`} style={{
+            background: theme === "light" ? "#f0f2f5" : "#1a1a1a",
+        }}>
             <div className={styles.commentHeader}>
                 <img height={40}
                      src={`${import.meta.env.VITE_PUBLIC_API_URL}assets/avatars/${comment.author.avatar}.png`} alt=""/>
-                <p>{comment.author.username}</p>
+                <p style={{
+                    color: theme === "light" ? "#000" : "#fff"
+                }}>{comment.author.username}</p>
             </div>
             <div className={styles.commentContent}>
                 <p>{comment.comment}</p>

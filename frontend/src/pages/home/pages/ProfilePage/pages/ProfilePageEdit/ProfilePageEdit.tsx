@@ -6,8 +6,11 @@ import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useNavigate} from "react-router-dom";
 import {updateProfile} from "../../../../../../apis/user.api.ts";
+import {ThemeContext, ThemeContextType} from "../../../../../../contexts/ThemeContext.tsx";
 
 const ProfilePageEdit = () => {
+
+    const {theme} = useContext(ThemeContext) as ThemeContextType
 
     const {user, setUser} = useContext(AuthContext) as AuthContextType
     const navigate = useNavigate()
@@ -77,7 +80,7 @@ const ProfilePageEdit = () => {
     })
 
     return (
-        <div className={styles.profilePageEdit}>
+        <div className={`${styles.profilePageEdit}  ${theme !== "light" && styles.dark}`}>
             <form onSubmit={onSubmit}>
                 <h1 className={styles.title}>Modifier votre profil</h1>
                 <div>

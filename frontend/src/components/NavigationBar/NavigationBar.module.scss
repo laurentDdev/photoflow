@@ -166,5 +166,19 @@
       color: red;
     }
   }
+}
 
+.dark {
+  h3, a, div {
+    color: white;
+
+    span {
+      color: white;
+    }
+  }
+
+  button {
+    color: white;
+    background: none;
+  }
 }

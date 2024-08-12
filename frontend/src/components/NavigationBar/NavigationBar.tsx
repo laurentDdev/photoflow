@@ -2,15 +2,17 @@ import {useContext} from "react";
 import {AuthContext, AuthContextType} from "../../contexts/AuthContext.tsx";
 import styles from "./NavigationBar.module.scss"
 import {Navigate, NavLink} from "react-router-dom";
+import {ThemeContext, ThemeContextType} from "../../contexts/ThemeContext.tsx";
 
 const NavigationBar = () => {
 
     const {user, logout} = useContext(AuthContext) as AuthContextType
+    const {theme} = useContext(ThemeContext) as ThemeContextType
 
     return (
         <>
             {user ? (
-                <header className={styles.navigationBar}>
+                <header className={`${styles.navigationBar} ${theme !== "light" && styles.dark}`} >
                     <>
                         <div className={"d-flex flex-column align-items-center"}>
                             <div className={styles.headerInfos}>
@@ -18,17 +20,17 @@ const NavigationBar = () => {
                                      src={`${import.meta.env.VITE_PUBLIC_API_URL}assets/avatars/${user.avatar}.png`}
                                      alt=""/>
                                 <h3>{user.username}</h3>
-                                <span
-                                    className={`${styles.accountType} ${user.accountType == 'free' ? styles.accountFree : styles.accountPremium}`}>
-                        {user.accountType}
-                    </span>
+                    {/*            <span*/}
+                    {/*                className={`${styles.accountType} ${user.accountType == 'free' ? styles.accountFree : styles.accountPremium}`}>*/}
+                    {/*    {user.accountType}*/}
+                    {/*</span>*/}
                             </div>
-                            <div className={`${styles.stats}`}>
-                                <div className={"d-flex flex-column align-items-center"}>98 <span>Posts</span></div>
-                                <div className={"d-flex flex-column align-items-center"}>3.5k <span>Followers</span>
-                                </div>
-                                <div className={"d-flex flex-column align-items-center"}>1k <span>Following</span></div>
-                            </div>
+                            {/*<div className={`${styles.stats}`}>*/}
+                            {/*    <div className={"d-flex flex-column align-items-center"}>98 <span>Posts</span></div>*/}
+                            {/*    <div className={"d-flex flex-column align-items-center"}>3.5k <span>Followers</span>*/}
+                            {/*    </div>*/}
+                            {/*    <div className={"d-flex flex-column align-items-center"}>1k <span>Following</span></div>*/}
+                            {/*</div>*/}
                             <div className={`${styles.navigation}`}>
                                 <ul>
                                     <li><NavLink to={""} className={({isActive}) => isActive ? styles.navActive : ""}><i

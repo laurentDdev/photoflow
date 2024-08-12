@@ -1,5 +1,7 @@
 .card {
   max-height: 500px;
+
+
 }
 
 .cardHeader {
@@ -92,4 +94,9 @@
         font-weight: normal;
     }
   }
+}
+
+.dark {
+  background: var(--gray-1);
+  color:white;
 }

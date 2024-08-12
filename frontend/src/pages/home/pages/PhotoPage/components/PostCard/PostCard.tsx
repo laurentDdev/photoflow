@@ -1,9 +1,10 @@
 import styles from "./PostCard.module.scss"
 import {IPost} from "../../../../../../models/Post.ts";
-import {useEffect, useMemo, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 import ModalPreviewPost from "../../../../../../components/ModalPreviewPost/ModalPreviewPost.tsx";
 import {timeSince} from "../../../../../../utils/time.ts";
 import {IUser} from "../../../../../../models/User.ts";
+import {ThemeContext, ThemeContextType} from "../../../../../../contexts/ThemeContext.tsx";
 
 
 type Props = {
@@ -21,6 +22,8 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
 
     const elapsedTime = useMemo(() => timeSince(new Date(post.createdAt)), [post.createdAt]);
 
+    const {theme} = useContext(ThemeContext) as ThemeContextType
+
 
     useEffect(() => {
         if (post.likes) {
@@ -33,12 +36,12 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
 
     return (
         <>
-            <div className={`card p-10 ${styles.card}`}>
+            <div className={`card p-10 ${styles.card} ${theme !== "light" && styles.dark}`}>
                 <div className={`d-flex align-items-center ${styles.cardHeader} mb-10`}>
                     <img height={50}
                          src={`${import.meta.env.VITE_PUBLIC_API_URL}/assets/avatars/${typeof post.author !== "string" ? post.author?.avatar + '.png' : ''}`}
                          alt=""/>
-                    <span>{typeof post.author !== "string" ? post.author?.username : ''}</span>
+                    <span className={`${theme !== "light" && styles.dark}`}>{typeof post.author !== "string" ? post.author?.username : ''}</span>
                 </div>
                 <div className={styles.postImageContainer} onDoubleClick={() => toggleLike(post._id)}>
                     <img className={styles.postImage}
@@ -80,7 +83,7 @@ const PostCard = ({post, user, toggleLike, toggleFavorite}: Props) => {
                         </ul>
 
                     </div>
-                    <div className={styles.cardFooterDate}>
+                    <div className={`${theme !== "light" && styles.dark} ${styles.cardFooterDate}`}>
                         <p className={"mb-10"}>{post.name.length > 15 ? post.name.slice(0, 15) + "..." : post.name}</p>
                         <div>
                             <p>{elapsedTime}</p>
